@@ -13,8 +13,8 @@
         
           <div class="card"> 
           <a href=/matches/{{$data['id']}}> <img class="card-img-top" src="{{$data['thumbnail']}}">
-          <div class="card-block">
-          <h5 class="text-bold"><h4>{{$data['title']}}</h4></a></h5>
+          <div class="card-body bg-dark">
+          <h6 class="text-bold; color:white">{{$data['title']}}</a></h6>
            
         </div>
                       
