@@ -41,8 +41,8 @@ class ApiController extends Controller
                 $matchesvideo->side1 = $data['side1']['name'];
                 $matchesvideo->side2 = $data['side2']['name'];
                         
-            // Twitter::post("statuses/update", ["status"  = > "New video Highlights added for: ".'#'.$data['side1']['name'].' - '.'#'.$data['side2']['name'].' '.$matches[0]
-            //]);
+      //   Twitter::post("statuses/update", ["status"  => "New video Highlights added for: ".'#'.$data['side1']['name'].' - '.'#'.$data['side2']['name'].' '.$matches[0]
+         //   ]);
 
 
                 $matchesvideo->save();
