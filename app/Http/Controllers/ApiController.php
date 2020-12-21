@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Twitter;
 use Illuminate\Support\Facades\Log;
+use DateTime;
 class ApiController extends Controller
 {
 
@@ -32,7 +33,9 @@ class ApiController extends Controller
                 preg_match('#\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))#', $data['embed'], $matches);
                 $matchesvideo->embed = $matches[0];
                 $matchesvideo->url = $data['url'];
-                $matchesvideo->date = $data['date'];
+                $dateFromdb = new DateTime ($data['date']);
+                $new_date_format = $dateFromdb->format('Y-m-d H:i:s');
+                $matchesvideo->date = $new_date_format;
                 $matchesvideo->thumbnail = $data['thumbnail'];
                 $matchesvideo->cName = $data['competition']['name'];
                 $matchesvideo->cId = $data['competition']['id'];

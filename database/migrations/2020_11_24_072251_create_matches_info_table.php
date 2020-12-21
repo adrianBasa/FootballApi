@@ -19,7 +19,7 @@ class CreateMatchesInfoTable extends Migration
             $table->text('embed');
             $table->text('url');
             $table->text('thumbnail');
-            $table->text('date');
+            $table->date('date');
             $table->text('cName');
             $table->text('cId');
             $table->text('Curl');
