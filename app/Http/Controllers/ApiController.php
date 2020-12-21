@@ -43,17 +43,18 @@ class ApiController extends Controller
                         
       //   Twitter::post("statuses/update", ["status"  => "New video Highlights added for: ".'#'.$data['side1']['name'].' - '.'#'.$data['side2']['name'].' '.$matches[0]
          //   ]);
-
-
+         
                 $matchesvideo->save();
-        
+                
+              
             } 
             
         }               
-           
+
         }  
-     
-        return response()->json($matchesvideo);
+       
+        return response()->json([$matchesvideo]);
+        
     }
     public function show()
     {
@@ -73,7 +74,7 @@ class ApiController extends Controller
 
     public function list()
     {
-        $matchesvideo  =   MatchesInfo::all();
+        $matchesvideo  =   MatchesInfo::orderBy('created_at', 'asc')->get();
        return view('matches',['data' =>$matchesvideo]);
         // return  response()->json($matchesvideo);
 
