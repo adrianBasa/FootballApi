@@ -77,7 +77,7 @@ class ApiController extends Controller
 
     public function list()
     {
-        $matchesvideo  =   MatchesInfo::orderBy('created_at', 'asc')->get();
+        $matchesvideo  =   MatchesInfo::orderBy('created_at', 'DESC')->get();
        return view('matches',['data' =>$matchesvideo]);
         // return  response()->json($matchesvideo);
 
