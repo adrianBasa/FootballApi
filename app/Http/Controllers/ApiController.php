@@ -22,7 +22,8 @@ class ApiController extends Controller
       //  for IF
       
         foreach($datas as $data) { 
-            if( $data['competition']['id'] == 15 && $data['videos']['title']  = 'Highlights'){
+            if( $data['competition']['id'] == 15 || $data['competition']['id'] == 14 || $data['competition']['id'] == 13  
+            || $data['competition']['id'] == 11 && $data['videos']['title']  = 'Highlights'){
             $matchesvideo = new MatchesInfo();
             $user = $matchesvideo::where('thumbnail', $data['thumbnail']) 
             ->get();
