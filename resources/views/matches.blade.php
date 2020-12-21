@@ -15,7 +15,7 @@
           <a href=/matches/{{$data['id']}}> <img class="card-img-top" src="{{$data['thumbnail']}}">
           <div class="card-body bg-dark">
           <h6 class="text-bold;">{{$data['title']}}</a></h6>
-          <b> <p style=" color:white"> Played game: {{$data['date']}}</p></b>
+          <b> <p style=" color:white"> Game played on: {{$data['date']}}</p></b>
         </div>
                       
     </div>  
