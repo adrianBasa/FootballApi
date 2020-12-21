@@ -76,11 +76,38 @@ class ApiController extends Controller
 
     }
 
+    public function showPremierLeague()
+    {
+        $matchesvideo  =   MatchesInfo::Where('cId', '=','15')->get();
+    
+    return view('matchesVideos',['data' =>$matchesvideo]);
+    }
+    
+    public function showSeriaA()
+    {
+        $matchesvideo  =   MatchesInfo::Where('cId', '=','13')->get();
+    
+    return view('matchesVideos',['data' =>$matchesvideo]);
+    }
+
+    public function showLaLiga()
+    {
+        $matchesvideo  =   MatchesInfo::Where('cId', '=','14')->get();
+    
+    return view('matchesVideos',['data' =>$matchesvideo]);
+    }
+    public function showBundesliga()
+    {
+        $matchesvideo  =   MatchesInfo::Where('cId', '=','11')->get();
+    
+    return view('matchesVideos',['data' =>$matchesvideo]);
+    } 
+
     public function list()
     {
         $matchesvideo  =   MatchesInfo::orderBy('created_at', 'DESC')->get();
        return view('matches',['data' =>$matchesvideo]);
-        // return  response()->json($matchesvideo);
+        
 
     }
 

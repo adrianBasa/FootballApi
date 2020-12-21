@@ -13,12 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+ //   return view('welcome');
+//});
 
-Route::get('/matches','App\Http\Controllers\ApiController@list');
+Route::get('/','App\Http\Controllers\ApiController@list');
 Route::get('/matches/{id}','App\Http\Controllers\ApiController@showbyid');
+Route::get('/premier-league','App\Http\Controllers\ApiController@showPremierLeague');
+Route::get('/serie-a','App\Http\Controllers\ApiController@showSeriaA'); 
+Route::get('/la-liga','App\Http\Controllers\ApiController@showLaLiga');
+Route::get('/bundesliga','App\Http\Controllers\ApiController@showBundesliga');
+
 
 
 
