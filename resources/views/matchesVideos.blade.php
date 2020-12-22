@@ -1,12 +1,12 @@
 <head>@include('includes.header')
 </head>
-  <title>Matches Highlights</title>
 
 <div class="container">
 <h1 style="text-align:center">Matches</h1>  
 
   <div class="row">@foreach($data as $data) 
- 
+  <title>{{$data['cName']}}</title>
+
         <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
         
           <div class="card"> 

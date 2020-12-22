@@ -1,6 +1,7 @@
 <head>
 @include('includes.header')
 </head>
+<title> Football Video Highlights</title>
 <body>
 <div class="container">
 <h1 style="text-align:center">Matches</h1>  
