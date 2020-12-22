@@ -22,8 +22,8 @@ class ApiController extends Controller
       //  for IF
       
         foreach($datas as $data) { 
-            if( $data['competition']['id'] == 15 || $data['competition']['id'] == 14 || $data['competition']['id'] == 13  
-            || $data['competition']['id'] == 11 && $data['videos']['title']  = 'Highlights'){
+            if( ($data['competition']['id'] == 15 || $data['competition']['id'] == 14 || $data['competition']['id'] == 13  
+            || $data['competition']['id'] == 11) && ($data['videos']['title']  = 'Highlights')){
             $matchesvideo = new MatchesInfo();
             $user = $matchesvideo::where('thumbnail', $data['thumbnail']) 
             ->get();
@@ -45,8 +45,8 @@ class ApiController extends Controller
                 $matchesvideo->side1 = $data['side1']['name'];
                 $matchesvideo->side2 = $data['side2']['name'];
                         
-      //   Twitter::post("statuses/update", ["status"  => "New video Highlights added for: ".'#'.$data['side1']['name'].' - '.'#'.$data['side2']['name'].' '.$matches[0]
-         //   ]);
+       Twitter::post("statuses/update", ["status"  => "New video Highlights added for: ".'#'.$data['side1']['name'].' - '.'#'.$data['side2']['name'].' '.$matches[0]
+            ]);
          
                 $matchesvideo->save();
                 
