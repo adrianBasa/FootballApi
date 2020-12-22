@@ -3,8 +3,8 @@
 
   <title>{{$data['title']}}</title>
 
- 
-<div class="container">
+ <body>
+   <div class="container">
 <h1>Match  : {{$data['videoTitle']}}</h1>
   <div class="row">
     <div class="col-sm-6 col-md-4 col-lg-6 mt-4 mx-auto mx-auto">
@@ -19,5 +19,6 @@
 <footer>
 @include('includes.footer')
 </footer>
+</body>
 
 

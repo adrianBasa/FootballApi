@@ -5,7 +5,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <style> 
   .imgFlag{
-    display: table-cell;
 width: 20px;
 height: 20px;
 background-size: 18px;
@@ -25,16 +24,16 @@ box-shadow: 0 1px 6px #e7e7e7;
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item ">
-        <a class="nav-link" href="/premier-league"><img class="imgFlag" src="/img/epl.png" > Premier League  </a>
+        <a class="nav-link" href="/premier-league"><img class="imgFlag" src="/img/epl.png" > Premier League  </img></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/serie-a"><img class="imgFlag" src="/img/seriea.png"></img> Serie A</a>
+        <a class="nav-link" href="/serie-a"><img class="imgFlag" src="/img/seriea.png"> Serie A </img> </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/bundesliga"><img class="imgFlag" src="/img/bundesliga.png"></img> Bundesliga</a>
+        <a class="nav-link" href="/bundesliga"><img class="imgFlag" src="/img/bundesliga.png"> Bundesliga</img> </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/la-liga"><img class="imgFlag" src="/img/laliga.png" ></img> La Liga</a>
+        <a class="nav-link" href="/la-liga"><img class="imgFlag" src="/img/laliga.png" > La Liga</img></a>
       </li>
      
     </ul>
