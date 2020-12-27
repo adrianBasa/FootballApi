@@ -5,7 +5,7 @@
 <meta property="og:description" content="VideoHighLight."/>  
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:image" content={{$data['thumbnail']}}>
-<meta name="twitter:title" content={{$data['title']}}>
+<meta name="twitter:title" content={{$data['title']}}/>
 <meta name="twitter:description" content="VideoHighLight">
   <title>{{$data['title']}}</title>
 
