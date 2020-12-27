@@ -8,6 +8,7 @@ use Twitter;
 use File;
 use Illuminate\Support\Facades\Log;
 use DateTime;
+use Illuminate\Pagination\LengthAwarePaginator;
 class ApiController extends Controller
 {
 
@@ -110,7 +111,8 @@ class ApiController extends Controller
 
     public function list()
     {
-        $matchesvideo  =   MatchesInfo::orderBy('created_at', 'DESC')->orderBy('created_at', 'DESC')->get();
+        $matchesvideo  =   MatchesInfo::orderBy('created_at', 'DESC')->orderBy('created_at', 'DESC')->simplePaginate(12);
+       
        return view('matches',['data' =>$matchesvideo]);
         
 
