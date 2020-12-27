@@ -1,12 +1,12 @@
 <head>@include('includes.header')
 </head>
-<meta property="og:image" content={{$data['thumbnail']}}>  
-<meta property="og:title" content={{$data['title']}}>  
+<meta property="og:image" content={{$data['thumbnail']}}/>  
+<meta property="og:title" content={{$data['title']}}/>  
 <meta property="og:description" content="VideoHighLight."/>  
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:image" content={{$data['thumbnail']}}>
+<meta name="twitter:image" content={{$data['thumbnail']}}/>
 <meta name="twitter:title" content={{$data['title']}}/>
-<meta name="twitter:description" content="VideoHighLight">
+<meta name="twitter:description" content="VideoHighLight"/>
   <title>{{$data['title']}}</title>
 
  <body>
