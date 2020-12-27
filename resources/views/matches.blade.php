@@ -22,8 +22,8 @@
         
     </div>
 </div>
-<div class="d-flex justify-content-center">
-{!! $data->links()}
+<div class="d-flex justify-content-center" style="padding:1%">
+{{$data->links()}}
 
 </div>
 </body>
