@@ -20,6 +20,6 @@
 </div>
 </div>
 
-<footer>
+<footer class="footer">
 @include('includes.footer')
 </footer>

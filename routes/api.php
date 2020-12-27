@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/postmatches','App\Http\Controllers\ApiController@create');
+Route::post('/poststandings','App\Http\Controllers\StandingsController@create');
 
 Route::get('/getmatches','App\Http\Controllers\ApiController@show');
 

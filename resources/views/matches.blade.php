@@ -1,7 +1,8 @@
+<html>
 <head>
 @include('includes.header')
-</head>
 <title> Football Video Highlights</title>
+</head>
 <body>
 <div class="container">
 <h1 style="text-align:center">Matches</h1>  
@@ -20,6 +21,7 @@
     </div>
 </div>
 </body>
-<footer>
+<footer class="footer">
 @include('includes.footer')
 </footer>
+</html>

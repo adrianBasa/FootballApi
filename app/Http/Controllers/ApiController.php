@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\MatchesInfo;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Abraham\TwitterOAuth\TwitterOAuth;
 use Twitter;
+use File;
 use Illuminate\Support\Facades\Log;
 use DateTime;
 class ApiController extends Controller
@@ -45,10 +45,15 @@ class ApiController extends Controller
                 $matchesvideo->side1 = $data['side1']['name'];
                 $matchesvideo->side2 = $data['side2']['name'];
                         
-       Twitter::post("statuses/update", ["status"  => "New video Highlights added for: ".'#'.$data['side1']['name'].' - '.'#'.$data['side2']['name'].' '."https://footballvideo.azurewebsites.net/"
-            ]);
-         
+                $data['side1']['name'] = str_replace(' ', '', $data['side1']['name']);
+                $data['side2']['name'] = str_replace(' ', '', $data['side2']['name']);
                 $matchesvideo->save();
+                $last_insert_id = $matchesvideo->id;
+                
+              //  $uploaded_media = Twitter::uploadMedia(['media' => File::get(public_path($img))]);
+               Twitter::post("statuses/update", ["status"  => "New video Highlights added for: ".'#'.$data['side1']['name'].' - '.'#'.$data['side2']['name'].' '."https://footballvideo.azurewebsites.net/matches/".$last_insert_id,
+        ]);
+                 
                 
               
             } 
@@ -126,5 +131,34 @@ class ApiController extends Controller
        // return view('index',['data' = >$arr]);
     } 
 
+    public function showTable()
+    {  
+        
+
+        $APIkey='41e6b183fe237b34fcca61a15707fc82b06ce5d8db33354bd181285f15beb1f2';
+        $league_id = 148;
+        
+        $curl_options = array(
+          CURLOPT_URL => "https://apiv2.apifootball.com/?action=get_standings&league_id=$league_id&APIkey=$APIkey",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_HEADER => false,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_CONNECTTIMEOUT => 5
+        );
+        
+        $curl = curl_init();
+        curl_setopt_array( $curl, $curl_options );
+        $result = curl_exec( $curl );
+        
+        $result = json_decode($result,true);
+       // $arr  =  json_decode($content,TRUE);
+       // var_dump($result);
+
+          return view ('includes.table',['standing'=>$result]);
+         // return view ('table',['standing'=>$response]);
+        
+    } 
+
   
+
 }

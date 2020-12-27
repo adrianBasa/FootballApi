@@ -23,6 +23,8 @@ Route::get('/premier-league','App\Http\Controllers\ApiController@showPremierLeag
 Route::get('/serie-a','App\Http\Controllers\ApiController@showSeriaA'); 
 Route::get('/la-liga','App\Http\Controllers\ApiController@showLaLiga');
 Route::get('/bundesliga','App\Http\Controllers\ApiController@showBundesliga');
+Route::get('/table','App\Http\Controllers\ApiController@showtable');
+
 
 
 
