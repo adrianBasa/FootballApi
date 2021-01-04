@@ -10,3 +10,4 @@ It does the following:
 4. Posts summaries related data to the twitter account
 
 For live version : https://footballvideo.azurewebsites.net/
+Twitter account : https://twitter.com/FvHighlight
