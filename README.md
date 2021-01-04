@@ -8,3 +8,5 @@ It does the following:
 2. Saves summaries related data in the database 
 3. List summaries on the page
 4. Posts summaries related data to the twitter account
+
+For live version : https://footballvideo.azurewebsites.net/
