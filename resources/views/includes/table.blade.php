@@ -1,18 +1,49 @@
-<head>
-@include('includes.header')
-</head>
+
+@yield('table') 
+
 <style>
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+tr:hover {background-color:#009879;}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
 .numberCircle {
-    border-radius: 50%;
+    border-radius: 25px;
     width: 10px;
     height: 10px;
-    padding: 8px;
+    padding: 5px;
 
     background: #fff;
     border: 2px solid #666;
-    color: #666;
+    color: #000;
     text-align: center;
-    font: 8px Arial, sans-serif;
+    font: 12px Arial, sans-serif;
 }
 .g{
   background-color:#28a745;
@@ -23,34 +54,55 @@
 .r{
   background-color:#dc3545;
 }
+
 </style>
-    
-<table class="table table-hover table-responsive table-sm">
+<table class="styled-table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Team</th>
+      <th scope="col">Pos</th>
+      <th scope="col"></th>
+      <th scope="col">Club</th>
+      <th scope="col"></th>
       <th scope="col">PTS</th>
       <th scope="col">PG</th>
 
     </tr>
-  </thead>  @foreach($standing as $data) 
+  </thead>  @foreach($stand as $stands) 
 
   <tbody>
     <tr>
-      <th scope="row">  {{$data['overall_league_position']}}</th>
-      <td><img style="height:15px" src="{{$data['team_badge']}}"> 
-   {{$data['team_name']}} <br> <span> <span class="numberCircle g">{{$data['overall_league_W']}}</span>
-   <span class="numberCircle y">{{$data['overall_league_D']}}</span>  <span class="numberCircle r">{{$data['overall_league_L']}}</span>
-<span> {{$data['overall_league_GF']}} - {{$data['overall_league_GA']}}</span>
-  </span>
+      <th scope="row">  {{$stands['Nr']}}</th>
+      <td><img style="height:30px" src="{{$stands['Logo']}}"></th> 
+      <th style="font-size: 12px;" >
+  <b> {{$stands['Team']}}</b> 
+  <th style="padding-right:2px; "> <span><span class="numberCircle g">{{$stands['W']}} W</span>
+   <span class="numberCircle y">{{$stands['D']}} D</span>  <span class="numberCircle r">{{$stands['L']}} L</span>
+<span> <span style="height:25px;    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-image: url(https://d37kf7rs4g1hyv.cloudfront.net/scorebat/spriteflsc-min.png);
+    background-size: 146px;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    margin-right: 4px;
+    background-position: -24px -33px;
+    margin-bottom: 2px;"></span> {{$stands['GF']}} - {{$stands['GA']}}</span></span>
+</th>
   </td>
-      <td><b>{{$data['overall_league_PTS']}}</b> </td>
-      <td>{{$data['overall_league_payed']}}</td>  
+      <td style="border: solid 3px #eee;
+width: 25px;
+height: 25px;
+line-height: 20px;
+color: #c44e4e;
+border-radius: 18px;
+display: inline-block;
+font-weight: 900;
+font-size: 14px;"><b>{{$stands['PTS']}}</b> </td>
+      <td>{{$stands['PG']}}</td>  
     </tr>
     
   </tbody>
   @endforeach 
 </table>
-  
+Last update date:<b> {{$stands['updated_at']}}</b>
 

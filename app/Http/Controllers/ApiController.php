@@ -9,6 +9,7 @@ use File;
 use Illuminate\Support\Facades\Log;
 use DateTime;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Standings;
 class ApiController extends Controller
 {
 
@@ -18,10 +19,7 @@ class ApiController extends Controller
         $datas = $this->getDataFromApi();
         //initializezi un array de videos
         $matchesArray  =  [];
-
-
-      //  for IF
-      
+    
         foreach($datas as $data) { 
             if( ($data['competition']['id'] == 15 || $data['competition']['id'] == 14 || $data['competition']['id'] == 13  
             || $data['competition']['id'] == 11) && ($data['videos']['title']  = 'Highlights')){
@@ -55,8 +53,6 @@ class ApiController extends Controller
                Twitter::post("statuses/update", ["status"  => "New video Highlights added for: ".'#'.$data['side1']['name'].' - '.'#'.$data['side2']['name'].' '."https://footballvideo.azurewebsites.net/matches/".$last_insert_id,
         ]);
                  
-                
-              
             } 
             
         }               
@@ -77,45 +73,65 @@ class ApiController extends Controller
     public function showbyid($id)
     {
         $matchesvideo  =   MatchesInfo::find($id);
-    //   return view('matches',['data' = >$matchesvideo]);
-    return view('matchTitle',['data' =>$matchesvideo]);
+        if($matchesvideo['cId'] == '15') {
+            $tableId = 148;
+           }
+       else if($matchesvideo['cId'] == '14'){
+        $tableId = 468;
+       
+        }
+       else if($matchesvideo['cId'] == '13'){
+            $tableId = 262;
+            
+            }
+        else {
+            $tableId = 195;
+        }   
+        $plstand = Standings::Where('LeagueId', '=',$tableId)->orderBy('Nr', 'ASC')->get();
+        $data = array(
+            'video'=>$matchesvideo,
+            'standing'=>$plstand
+            );
+        return view('matchTitle',['data' =>$data]);
 
     }
 
-    public function showPremierLeague()
-    {
-        $matchesvideo  =   MatchesInfo::Where('cId', '=','15')->get();
-    
-    return view('matchesVideos',['data' =>$matchesvideo]);
-    }
-    
-    public function showSeriaA()
-    {
-        $matchesvideo  =   MatchesInfo::Where('cId', '=','13')->orderBy('created_at', 'DESC')->get();
-    
-    return view('matchesVideos',['data' =>$matchesvideo]);
-    }
+    public function showLeague( Request $request)
+    {        
+        $premierleague = $request->PremierLeague;  
+        $seriaa = $request->SeriaA;  
+        $bundesliga = $request->Bundesliga;
+        $laliga = $request->LaLiga;
+       
+        if(isset($premierleague) ) {
+             
+        $selectedeague=$premierleague;
+       }
+       if(isset($seriaa) ) {
+             
+        $selectedeague=$seriaa;
+       }
+       if(isset($bundesliga) ) {
+             
+        $selectedeague=$bundesliga;
+       }
+       
+       if(isset($laliga) ) {
+             
+        $selectedeague=$laliga;
+       }
 
-    public function showLaLiga()
-    {
-        $matchesvideo  =   MatchesInfo::Where('cId', '=','14')->orderBy('created_at', 'DESC')->get();
+        $matchesvideo  =   MatchesInfo::Where('cId', '=', $selectedeague)->orderBy('created_at', 'DESC')->simplePaginate(12);
     
-    return view('matchesVideos',['data' =>$matchesvideo]);
+        return view('matchesVideos',['data' =>$matchesvideo]);
     }
-    public function showBundesliga()
-    {
-        $matchesvideo  =   MatchesInfo::Where('cId', '=','11')->orderBy('created_at', 'DESC')->get();
     
-    return view('matchesVideos',['data' =>$matchesvideo]);
-    } 
-
+    
     public function list()
     {
         $matchesvideo  =   MatchesInfo::orderBy('created_at', 'DESC')->orderBy('created_at', 'DESC')->simplePaginate(12);
        
-       return view('matches',['data' =>$matchesvideo]);
-        
-
+        return view('matches',['data' =>$matchesvideo]);
     }
 
     public function getDataFromApi()
@@ -127,40 +143,7 @@ class ApiController extends Controller
         $content  = $body->getContents();
         $arr  =  json_decode($content,TRUE);
         $events  =  $arr;
-       // print_r($events);
         return $events;
-        
-       // return view('index',['data' = >$arr]);
+            
     } 
-
-    public function showTable()
-    {  
-        
-
-        $APIkey='41e6b183fe237b34fcca61a15707fc82b06ce5d8db33354bd181285f15beb1f2';
-        $league_id = 148;
-        
-        $curl_options = array(
-          CURLOPT_URL => "https://apiv2.apifootball.com/?action=get_standings&league_id=$league_id&APIkey=$APIkey",
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_HEADER => false,
-          CURLOPT_TIMEOUT => 30,
-          CURLOPT_CONNECTTIMEOUT => 5
-        );
-        
-        $curl = curl_init();
-        curl_setopt_array( $curl, $curl_options );
-        $result = curl_exec( $curl );
-        
-        $result = json_decode($result,true);
-       // $arr  =  json_decode($content,TRUE);
-       // var_dump($result);
-
-          return view ('includes.table',['standing'=>$result]);
-         // return view ('table',['standing'=>$response]);
-        
-    } 
-
-  
-
 }

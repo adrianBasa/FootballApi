@@ -15,7 +15,7 @@ class CreateStandingsTable extends Migration
     {
         Schema::create('standings', function (Blueprint $table) {
             $table->id();
-            $table->text('Nr')->nullable();
+            $table->integer('Nr')->nullable();
             $table->text('Team')->nullable();
             $table->text('PG')->nullable();
             $table->text('PTS')->nullable();
