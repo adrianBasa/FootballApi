@@ -62,13 +62,7 @@ class ApiController extends Controller
         return response()->json([$matchesvideo]);
         
     }
-    public function show()
-    {
-        $matchesvideo  =   MatchesInfo::all();
-    //   return view('matches',['data' = >$matchesvideo]);
-        return  response()->json($matchesvideo);
-
-    }
+ 
 
     public function showbyid($id)
     {
@@ -92,7 +86,7 @@ class ApiController extends Controller
             'video'=>$matchesvideo,
             'standing'=>$plstand
             );
-        return view('matchTitle',['data' =>$data]);
+        return view('selectedVideo',['data' =>$data]);
 
     }
 
@@ -103,47 +97,48 @@ class ApiController extends Controller
         $bundesliga = $request->Bundesliga;
         $laliga = $request->LaLiga;
        
-        if(isset($premierleague) ) {
-             
+        if(isset($premierleague) ) 
+        {        
         $selectedeague=$premierleague;
-       }
-       if(isset($seriaa) ) {
-             
+        $selectedpath ="PremierLeague=";
+        }
+       if(isset($seriaa) ) 
+       {      
         $selectedeague=$seriaa;
+        $selectedpath ="SeriaA=";
        }
-       if(isset($bundesliga) ) {
-             
+       if(isset($bundesliga) ) 
+       {             
         $selectedeague=$bundesliga;
+        $selectedpath ="Bundesliga=";
        }
        
-       if(isset($laliga) ) {
-             
+       if(isset($laliga) ) 
+       {            
         $selectedeague=$laliga;
+        $selectedpath ="LaLiga=";
        }
 
         $matchesvideo  =   MatchesInfo::Where('cId', '=', $selectedeague)->orderBy('created_at', 'DESC')->simplePaginate(12);
-    
-        return view('matchesVideos',['data' =>$matchesvideo]);
+        $matchesvideo->withPath('showLeague?'.$selectedpath.$selectedeague);
+        return view('selectedLeague',['data' =>$matchesvideo]);
+        
     }
-    
-    
+       
     public function list()
     {
-        $matchesvideo  =   MatchesInfo::orderBy('created_at', 'DESC')->orderBy('created_at', 'DESC')->simplePaginate(12);
-       
-        return view('matches',['data' =>$matchesvideo]);
+        $matchesvideo  =   MatchesInfo::orderBy('created_at', 'DESC')->orderBy('created_at', 'DESC')->simplePaginate(12);     
+        return view('allmatches',['data' =>$matchesvideo]);
     }
 
     public function getDataFromApi()
     {  
-
         $client  =  new Client(['base_uri'  => 'https://www.scorebat.com/video-api/v1/']);  
         $response  =  $client->request('GET', '',['verify'  => false]); 
         $body  =  $response->getBody();
         $content  = $body->getContents();
         $arr  =  json_decode($content,TRUE);
         $events  =  $arr;
-        return $events;
-            
+        return $events;           
     } 
 }

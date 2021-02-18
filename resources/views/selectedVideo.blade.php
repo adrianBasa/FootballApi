@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:image" content="{{$data['video']['video']['thumbnail']}}"/>  
+  <meta property="og:image" content="{{$data['video']['thumbnail']}}"/>  
 <meta property="og:title" content="{{$data['video']['title']}}"/>  
 <meta property="og:description" content="VideoHighLight."/>  
 <meta name="twitter:card" content="summary" />
@@ -24,7 +24,7 @@
     <div style='width:100%;height:0px;position:relative;padding-bottom:calc(56.25% + 335px);' class='_scorebatEmbeddedPlayerW_'><iframe src='{{$data['video']['embed']}}' frameborder='0' width='560' height='650' allowfullscreen allow='autoplay; fullscreen' style='width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;' class='_scorebatEmbeddedPlayer_'></iframe></div>
 </div>
 <div >   
-<h3>Table</h3>
+<h3>{{$data['video']['cName']}}</h3>
 @include('includes.table', ['stand' => $data['standing']])
 </div>
 </div>
