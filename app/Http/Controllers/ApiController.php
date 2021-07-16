@@ -25,7 +25,7 @@ class ApiController extends Controller
         $matchesArray  =  [];
 
         foreach ($datas as $data) {
-            if (($data['competition']['id'] == 506 || $data['competition']['id'] == 14 || $data['competition']['id'] == 13
+            if (($data['competition']['id'] == 15 || $data['competition']['id'] == 14 || $data['competition']['id'] == 13
                 || $data['competition']['id'] == 11) && ($data['videos']['title']  = 'Highlights')) {
                 $this->matchesvideo = new MatchesInfo();
                 $user = $this->matchesvideo::where('thumbnail', $data['thumbnail'])
